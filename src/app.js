@@ -33,7 +33,10 @@ ipfs.once('ready', () => ipfs.id((err, info) => {
   $peerId.innerHTML = `${info.id}`
 
   function updatePeers () {
-    $peers.innerHTML = Array.from(peersSet).map((p) => `<a href="#peer=${p}&repo=${repoName}" target="_blank" id="${p}">${p}</a>`).join(`<br>`)
+    const tags = Array.from(peersSet).map((p) => {
+      return `<a href="#peer=${p}&repo=${repoName}" target="_blank" id="${p}">${p}</a>`
+    })
+    $peers.innerHTML = tags.join(`<br>`)
   }
 
   const room = Room(ipfs, 'ipfs-quick-msg')
